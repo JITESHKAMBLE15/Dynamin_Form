@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form</title>
+    <style>
+        /* .left{
+            margin-left: 100px;
+        } */
+        body{
+            overflow-x:hidden;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #box1{
+            width: 30vw;
+            height: 100%;
+            padding: 20px;
+            margin: 0 auto;
+            background-color: aqua;
+        }
+        .boxes{
+            display: flex;
+            padding-left: 10%;
+        }
+        #box2{
+            width: 30vw;
+            height: 100%;
+            padding: 20px;
+            margin: 20px;
+            background-color: rgb(212, 150, 35);
+        }
+        #box3{
+
+            width: 30vw;
+            height: 100%;
+            padding: 20px;
+            margin: 20px;
+            background-color: rgb(205, 216, 47);
+        }
+        label{
+            /* margin-right: 100px; */
+        }
+        /* #box1 input{
+            margin-left: 100px;
+            width:100px
+        } */
+        /* .form_tag{
+            padding-top: 400px;
+        } */
+        #form{
+            width: 200px;
+            height: 30px;
+            font-size:20px;
+            background-color: aqua;
+            margin: 30px;
+            cursor: pointer;
+        }
+        #add,#sbt1,#addtext,#addnum,#addemail,#addradio1,#addradio2,#addcheck1,#addcheck2{
+            width: 100px;
+            height: 30px;
+            background-color: coral;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            font-weight: bold;
+            margin-left: 5px;
+            
+        }
+        #add:hover,#sbt1:hover,#addtext:hover,#addnum:hover,#addemail:hover,#addradio1:hover,#addradio2:hover,#addcheck1:hover,#addcheck2:hover{
+            box-shadow: 2px 3px 10px #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form_tag">
+        <select id="form">
+            <!-- <select id="form" onchange="fun1(this)"> -->
+            <option value="">select</option>
+            <option value="text">text</option>
+            <option value="number">number</option>
+            <option value="email">email</option>
+            <option value="radio">radio</option>
+            <option value="checkbox">checkbox</option>
+            <option value="submit">submit</option>
+        </select>
+        <button id="add" onclick="add()">Add</button>
+        <!-- <button id="add2" onclick="sbt2()">Add</button> -->
+    </div>
+
+        <div id="box1"></div>
+        
+
+    
+    <div class="boxes">
+        <div id='box2'> 
+            <!-- <form action="" id='box2' onsubmit="sbt3()">
+
+            </form> -->
+        </div>
+        <div id="box3"></div>
+    </div>
+
+
+    <script>
+        var form=document.getElementById('form');
+        var box1=document.getElementById('box1');
+        
+        var add=()=>{
+
+            // box1.setAttribute("type",form.value) += "<input>";
+            
+            // box1.innerHTML = box1.setAttribute("type",form.value);
+            
+            if(form.value=="text"){
+
+                box1.innerHTML += "<p id='text_ans'></p> ";
+                box1.innerHTML += "<input type='text' id='text1'> ";
+                box1.innerHTML += "<input type='submit'id='addtext' value='Add' onclick='add_text()'> ";
+
+                box1.innerHTML += "<input type='text' placeholder='text' id='text3'>";
+                
+
+            }
+            if(form.value=="number"){
+                box1.innerHTML += "<p id='num_ans'></p> ";
+                box1.innerHTML += "<input type='text' id='num1'></lable> ";
+                box1.innerHTML += "<input type='submit' value='Add' id='addnum' onclick='add_num()'> ";
+                box1.innerHTML += "<input type='number' placeholder='number' id='num3'>";
+
+            }
+            if(form.value=="email"){
+                box1.innerHTML += "<p id='email_ans'></p> ";
+                box1.innerHTML += "<input type='text' id='email1'></lable> ";
+                box1.innerHTML += "<input type='submit' value='Add' id='addemail' onclick='add_email()'> ";
+                box1.innerHTML += "<input type='email' placeholder='email' id='email3'>";
+
+            }
+            if(form.value=="radio"){
+                box1.innerHTML += "<p id='radio_ans'></p> ";
+                box1.innerHTML += "<input type='text' id='radio1'></lable> ";
+                box1.innerHTML += "<input type='submit' id='addradio1' value='Add'  onclick='add_radio()'> ";
+                
+                
+                box1.innerHTML += "<p id='radio_ans2'></p> ";
+                box1.innerHTML += "<input type='text' id='radio2' placeholder='gender' required>";
+                // box1.innerHTML += "<input type='radio'><br><br>";
+                box1.innerHTML += "<input type='submit' value='Add' id='addradio2' onclick='add_radio2()'>";
+            }
+            if(form.value=="checkbox"){
+
+                document.getElementById('radio2').style="display:none";
+                document.getElementById('addradio2').style="display:none";
+
+
+                box1.innerHTML += "<p id='check_ans'></p> ";
+                box1.innerHTML += "<input type='text' id='check1'></lable> ";
+                box1.innerHTML += "<input type='submit' id='addcheck1' value='Add' onclick='add_check()'>";
+
+                box1.innerHTML += "<p id='check_ans2'></p> ";
+                box1.innerHTML += "<input type='text' id='check2' placeholder='city' required>";
+                // box1.innerHTML += "<input type='checkbox'> <br><br>";
+                box1.innerHTML += "<input type='submit' value='Add' id='addcheck2' onclick='add_check2()'><br><br>";
+
+            }
+            if(form.value=="submit"){
+                document.getElementById('check2').style="display:none";
+                document.getElementById('addcheck2').style="display:none";
+
+                box1.innerHTML += "<input type='submit' id='sbt1' onclick='sbt1()' style='margin-left:20px'>";
+                box1.innerHTML += "<input type='submit' id='sbt2' onclick='sbt3()' >";
+
+            }
+        }
+
+        var add_text=()=>{
+            var text1=document.getElementById('text1').value;
+            
+            document.getElementById('text_ans').innerHTML=text1;
+            
+            document.getElementById('text1').style="display:none";
+            document.getElementById('addtext').style="display:none";
+        }
+
+        var add_num=()=>{
+            var num1=document.getElementById('num1').value;
+            
+            document.getElementById('num_ans').innerHTML=num1;
+            
+            // num1.style.display=none;
+            document.getElementById('num1').style="display:none";
+            document.getElementById('addnum').style="display:none";
+        }
+
+        var add_email =()=>{
+            var email1=document.getElementById('email1').value;
+            
+            document.getElementById('email_ans').innerHTML=email1;
+            
+            // email1.style.display=none;
+            document.getElementById('email1').style="display:none";
+            document.getElementById('addemail').style="display:none";
+        }
+        
+        var add_radio=()=>{
+            var radio1=document.getElementById('radio1').value;
+            
+            document.getElementById('radio_ans').innerHTML=radio1;
+            
+            document.getElementById('radio1').style="display:none";
+            document.getElementById('addradio1').style="display:none";
+            // radio1.style.display=none;
+        }
+        
+        var add_radio2=()=>{
+            var radio2=document.getElementById('radio2').value;
+    
+            document.getElementById('radio_ans2').innerHTML += radio2;
+            
+            document.getElementById('radio_ans2').innerHTML += "<input type='radio' id='radio3'><br><br>";
+            
+            // document.getElementById('radio2').style="display:none";
+            // document.getElementById('addradio2').style="display:none";
+
+        }
+
+        var add_check=()=>{
+
+            var check1=document.getElementById('check1').value;
+            
+            document.getElementById('check_ans').innerHTML=check1;
+            
+            document.getElementById('check1').style="display:none";
+            document.getElementById('addcheck1').style="display:none";
+            
+        }
+
+        var add_check2=()=>{
+            var check2=document.getElementById('check2').value;
+
+
+            document.getElementById('check_ans2').innerHTML += check2;
+            
+            document.getElementById('check_ans2').innerHTML += "<input type='checkbox' id='check3'><br><br>";
+
+            // document.getElementById('check2').style="display:none";
+            // document.getElementById('addcheck2').lstyle="display:none";
+
+        }
+
+        var sbt1=()=>{
+            document.getElementById('radio2').style="display:none";
+            document.getElementById('addradio2').style="display:none";
+            document.getElementById('check2').style="display:none";
+            document.getElementById('addcheck2').style="display:none";
+
+            document.getElementById('box2').innerHTML=box1.innerHTML;
+
+            // document.getElementById('box2').innerHTML="<input type='submit'>";
+            
+        }
+        var sbt3=()=>{
+
+            var a=document.getElementById('text3').value;
+            var b=document.getElementById('num3').value;
+            var c=document.getElementById('email3').value;
+            var d=document.getElementById('radio3').value;
+            var e=document.getElementById('check3').value;
+            
+            var ans=a+b+c+d+e;
+            document.getElementById('box3').innerHTML=ans;
+        
+        }
+        
+    </script>
+    
+</body>
+</html>
